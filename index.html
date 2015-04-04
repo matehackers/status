@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-    <title>MateHackers status</title>
+	<title>MateHackers status</title>
 </head>
 
 <body>
@@ -10,28 +10,31 @@
     <a href="http://mateaberto.herokuapp.com" id="status"></a>
 
     <script type="text/javascript">
-		var request = new XMLHttpRequest();
-		request.open('GET', 'http://mateaberto.herokuapp.com/status.json', true);
+		(function updateStatus() {
+			var request = new XMLHttpRequest();
+			request.open('GET', 'http://mateaberto.herokuapp.com/status.json?t=' + new Date().getTime(), true);
 
-		request.onload = function() {
-			if (request.status >= 200 && request.status < 400) {
-				console.log("Status atualizado");
-				var data = JSON.parse(request.responseText);
-				if (data["state"]["open"]) {
-					document.getElementById("status").innerHTML = "<img src=\"static/img/aberto.png\" />";
+			request.onload = function() {
+				if (request.status >= 200 && request.status < 400) {
+					console.log("Status atualizado");
+					var data = JSON.parse(request.responseText);
+					if (data["state"]["open"]) {
+						document.getElementById("status").innerHTML = "<img src=\"static/img/aberto.png\" />";
+					} else {
+						document.getElementById("status").innerHTML = "<img src=\"static/img/fechado.png\" />";
+					}
 				} else {
-					document.getElementById("status").innerHTML = "<img src=\"static/img/fechado.png\" />";
+					console.log("A conexão com o servidor ocorreu, mas retornou algum erro");
 				}
-			} else {
-				console.log("A conexão com o servidor ocorreu, mas retornou algum erro");
-			}
-		};
+			};
 
-		request.onerror = function() {
-		  console.log("Erro de conexão");
-		};
+			request.onerror = function() {
+			  console.log("Erro de conexão");
+			};
 
-		request.send();
+			request.send();
+		    setTimeout(updateStatus, 1000 * 60 * 3);
+		})();
     </script>
 </body>
 
