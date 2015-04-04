@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<title>MateHackers status</title>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>MateHackers status</title>
+	</head>
 
-<body>
+	<body>
 
-    <a href="http://mateaberto.herokuapp.com" id="status"></a>
-
-    <script type="text/javascript">
-		(function updateStatus() {
-			var request = new XMLHttpRequest();
-			request.open('GET', 'http://mateaberto.herokuapp.com/status.json?t=' + new Date().getTime(), true);
-
-			request.onload = function() {
-				if (request.status >= 200 && request.status < 400) {
-					console.log("Status atualizado");
-					var data = JSON.parse(request.responseText);
-					if (data["state"]["open"]) {
-						document.getElementById("status").innerHTML = "<img src=\"static/img/aberto.png\" />";
+	    <a href="http://mateaberto.herokuapp.com" id="status"></a>
+	
+	    <script type="text/javascript">
+			(function updateStatus() {
+				var request = new XMLHttpRequest();
+				request.open('GET', 'http://mateaberto.herokuapp.com/status.json?t=' + new Date().getTime(), true);
+	
+				request.onload = function() {
+					if (request.status >= 200 && request.status < 400) {
+						console.log("Status atualizado");
+						var data = JSON.parse(request.responseText);
+						if (data["state"]["open"]) {
+							document.getElementById("status").innerHTML = "<img src=\"static/img/aberto.png\" />";
+						} else {
+							document.getElementById("status").innerHTML = "<img src=\"static/img/fechado.png\" />";
+						}
 					} else {
-						document.getElementById("status").innerHTML = "<img src=\"static/img/fechado.png\" />";
+						console.log("A conex√£o com o servidor ocorreu, mas retornou algum erro");
 					}
-				} else {
-					console.log("A conex„o com o servidor ocorreu, mas retornou algum erro");
-				}
-			};
-
-			request.onerror = function() {
-			  console.log("Erro de conex„o");
-			};
-
-			request.send();
-		    setTimeout(updateStatus, 1000 * 60 * 3);
-		})();
-    </script>
-</body>
-
+				};
+	
+				request.onerror = function() {
+				  console.log("Erro de conex√£o");
+				};
+	
+				request.send();
+			    setTimeout(updateStatus, 1000 * 60 * 3);
+			})();
+	    </script>
+	</body>
 </html>
