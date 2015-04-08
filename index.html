@@ -12,7 +12,7 @@
 	    <script type="text/javascript">
 			(function updateStatus() {
 				var request = new XMLHttpRequest();
-				request.open('GET', 'http://status.matehackers.org/status.json?t=' + new Date().getTime(), true);
+				request.open('GET', 'http://mateaberto.herokuapp.com/status.json?t=' + new Date().getTime(), true);
 	
 				request.onload = function() {
 					if (request.status >= 200 && request.status < 400) {
