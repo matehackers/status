@@ -6,8 +6,14 @@ var updateStatus = function() {
     if (request.status >= 200 && request.status < 400) {
       console.log("Status financeiro atualizado");
       var data = JSON.parse(request.responseText);
-      document.getElementById("balance").value = parseFloat(data["balance"]);
-      document.getElementById("balance-human").innerHTML = data["balance"];
+      jQuery("#balance").val(parseFloat(data["balance"]));
+      jQuery("#balance-human").html(data["balance"]);
+
+      jQuery("#last-update time").attr('datetime', data["lastUpdate"]);
+      jQuery("#last-update time").html(data["lastUpdate"]);
+
+      jQuery("#days-remaining").attr('data-days', data["daysRemaining"]);
+      jQuery("#days-remaining").html(data["daysRemaining"]);
     }
   }
 
