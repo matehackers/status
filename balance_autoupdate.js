@@ -1,4 +1,4 @@
-var updateBalance = function() {
+var updateBalancea = function() {
   var request = new XMLHttpRequest();
   request.open('GET', '/_financeiro/balance', true);
 
@@ -10,7 +10,7 @@ var updateBalance = function() {
       jQuery("#balance-human").html(data["balance"]);
 
       jQuery("#last-update time").attr('datetime', data["lastUpdate"]);
-      jQuery("#last-update time").html(data["lastUpdate"]);
+      jQuery("#last-update time").html(data["lastUpdateHuman"]);
 
       jQuery("#days-remaining").attr('data-days', data["daysRemaining"]);
       jQuery("#days-remaining").html(data["daysRemaining"]);
