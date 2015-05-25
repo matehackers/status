@@ -23,6 +23,4 @@ var updateStatus = function () {
 
   request.send();
     setTimeout(updateStatus, 1000 * 60 * 3);
-  }
-
-$(document).ready(updateStatus);
+};

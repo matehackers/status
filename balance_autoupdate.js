@@ -1,4 +1,4 @@
-var updateStatus = function() {
+var updateBalance = function() {
   var request = new XMLHttpRequest();
   request.open('GET', '/_financeiro/balance', true);
 
@@ -15,14 +15,12 @@ var updateStatus = function() {
       jQuery("#days-remaining").attr('data-days', data["daysRemaining"]);
       jQuery("#days-remaining").html(data["daysRemaining"]);
     }
-  }
+  };
 
   request.onerror = function() {
     console.log("Erro de conexão financeira");
   };
 
   request.send();
-  setTimeout(updateStatus, 1000 * 60 * 3);
-}
-
-$(document).ready(updateStatus);
+  setTimeout(updateBalance, 1000 * 60 * 3);
+};
