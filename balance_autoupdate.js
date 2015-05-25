@@ -1,4 +1,4 @@
-var updateBalancea = function() {
+var updateBalance = function() {
   var request = new XMLHttpRequest();
   request.open('GET', '/_financeiro/balance', true);
 
