@@ -14,6 +14,9 @@ var updateBalance = function() {
 
       jQuery("#days-remaining").attr('data-days', data["daysRemaining"]);
       jQuery("#days-remaining").html(data["daysRemaining"]);
+
+      jQuery("#unlock-balance").val(parseFloat(data['unlockBalance']));
+      jQuery("#unlock-balance").html(data['unlockBalance']);
     }
   };
 
